@@ -61,6 +61,7 @@ const DevicesPage = () => {
       [t('sharedPhone')]: item.phone,
       [t('deviceModel')]: item.model,
       [t('deviceContact')]: item.contact,
+      [t('deviceLicensePlate')]: item.licensePlate,
       [t('userExpirationTime')]: formatTime(item.expirationTime, 'date'),
       [t('deviceStatus')]: formatStatus(item.status, t),
       [t('deviceLastUpdate')]: formatTime(item.lastUpdate, 'minutes'),
@@ -87,10 +88,11 @@ const DevicesPage = () => {
             <TableCell>{t('sharedName')}</TableCell>
             <TableCell>{t('deviceIdentifier')}</TableCell>
             <TableCell>{t('groupParent')}</TableCell>
-            <TableCell>{t('sharedPhone')}</TableCell>
-            <TableCell>{t('deviceModel')}</TableCell>
-            <TableCell>{t('deviceContact')}</TableCell>
-            <TableCell>{t('userExpirationTime')}</TableCell>
+          <TableCell>{t('sharedPhone')}</TableCell>
+          <TableCell>{t('deviceModel')}</TableCell>
+          <TableCell>{t('deviceContact')}</TableCell>
+          <TableCell>{t('deviceLicensePlate')}</TableCell>
+          <TableCell>{t('userExpirationTime')}</TableCell>
             <TableCell>{t('positionAddress')}</TableCell>
             {manager && <TableCell>{t('settingsUsers')}</TableCell>}
             <TableCell className={classes.columnAction} />
@@ -105,6 +107,7 @@ const DevicesPage = () => {
               <TableCell>{item.phone}</TableCell>
               <TableCell>{item.model}</TableCell>
               <TableCell>{item.contact}</TableCell>
+              <TableCell>{item.licensePlate}</TableCell>
               <TableCell>{formatTime(item.expirationTime, 'date')}</TableCell>
               <TableCell>
                 {positions[item.id] && (
@@ -127,7 +130,7 @@ const DevicesPage = () => {
                 />
               </TableCell>
             </TableRow>
-          )) : (<TableShimmer columns={manager ? 9 : 8} endAction />)}
+          )) : (<TableShimmer columns={manager ? 10 : 9} endAction />)}
         </TableBody>
         <TableFooter>
           <TableRow>

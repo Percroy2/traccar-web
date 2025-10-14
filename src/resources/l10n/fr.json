@@ -217,6 +217,7 @@
     "deviceIdentifier": "Identifiant",
     "deviceModel": "Modèle",
     "deviceContact": "Contact",
+    "deviceLicensePlate": "Plaque d'immatriculation",
     "deviceCategory": "Catégorie",
     "deviceLastUpdate": "Dernière mise à jour",
     "deviceCommand": "Commande",

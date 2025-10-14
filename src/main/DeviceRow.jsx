@@ -74,10 +74,30 @@ const DeviceRow = ({ devices, index, style }) => {
     } else {
       status = dayjs(item.lastUpdate).fromNow();
     }
+    
+    const parts = [];
+    
+    // Ajouter la plaque d'immatriculation si elle existe
+    if (item.licensePlate) {
+      parts.push(item.licensePlate);
+    }
+    
+    // Ajouter l'info secondaire configurée
+    if (deviceSecondary && item[deviceSecondary] && item[deviceSecondary] !== item.licensePlate) {
+      parts.push(item[deviceSecondary]);
+    }
+    
+    // Ajouter le statut
+    parts.push(<span className={classes[getStatusColor(item.status)]}>{status}</span>);
+    
     return (
       <>
-        {deviceSecondary && item[deviceSecondary] && `${item[deviceSecondary]} • `}
-        <span className={classes[getStatusColor(item.status)]}>{status}</span>
+        {parts.map((part, index) => (
+          <span key={index}>
+            {index > 0 && ' • '}
+            {part}
+          </span>
+        ))}
       </>
     );
   };

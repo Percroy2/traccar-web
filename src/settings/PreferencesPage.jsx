@@ -28,6 +28,7 @@ const deviceFields = [
   { id: 'phone', name: 'sharedPhone' },
   { id: 'model', name: 'deviceModel' },
   { id: 'contact', name: 'deviceContact' },
+  { id: 'licensePlate', name: 'deviceLicensePlate' },
 ];
 
 const PreferencesPage = () => {

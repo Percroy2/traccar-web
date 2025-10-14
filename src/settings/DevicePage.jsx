@@ -119,6 +119,12 @@ const DevicePage = () => {
                 onChange={(event) => setItem({ ...item, contact: event.target.value })}
                 label={t('deviceContact')}
               />
+              <TextField
+                value={item.licensePlate || ''}
+                onChange={(event) => setItem({ ...item, licensePlate: event.target.value })}
+                label={t('deviceLicensePlate')}
+                inputProps={{ style: { textTransform: 'uppercase' } }}
+              />
               <SelectField
                 value={item.category || 'default'}
                 onChange={(event) => setItem({ ...item, category: event.target.value })}

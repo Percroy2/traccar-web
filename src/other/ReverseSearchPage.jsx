@@ -26,7 +26,7 @@ import MapCamera from '../map/MapCamera';
 import fetchOrThrow from '../common/util/fetchOrThrow';
 import dayjs from 'dayjs';
 import ReverseSearchFilter from './ReverseSearchFilter';
-import MapLabels from './MapLabels';
+  import MapLabels from './MapLabels';
 
 const ReverseSearchPage = () => {
   const { classes } = useReportStyles();
@@ -74,18 +74,19 @@ const ReverseSearchPage = () => {
   });
 
   const onExport = () => {
-    const csvContent = [
-      ['Device Name', 'Group Name', 'Entry Time', 'Exit Time', 'Latitude', 'Longitude', 'Distance (m)'].join(','),
-      ...items.map(item => [
-        item.deviceName || item.name,
-        item.groupName,
-        dayjs(item.entryTime).format('YYYY-MM-DD HH:mm:ss'),
-        item.exitTime ? dayjs(item.exitTime).format('YYYY-MM-DD HH:mm:ss') : 'Still in zone',
-        item.latitude?.toFixed(6) || 'N/A',
-        item.longitude?.toFixed(6) || 'N/A',
-        item.distanceFromCenter?.toFixed(2) || 'N/A',
-      ].join(','))
-    ].join('\n');
+           const csvContent = [
+             ['Device Name', 'License Plate', 'Group Name', 'Entry Time', 'Exit Time', 'Latitude', 'Longitude', 'Distance (m)'].join(','),
+             ...items.map(item => [
+               item.deviceName || item.name,
+               item.licensePlate || '',
+               item.groupName,
+               dayjs(item.entryTime).format('YYYY-MM-DD HH:mm:ss'),
+               item.exitTime ? dayjs(item.exitTime).format('YYYY-MM-DD HH:mm:ss') : 'Still in zone',
+               item.latitude?.toFixed(6) || 'N/A',
+               item.longitude?.toFixed(6) || 'N/A',
+               item.distanceFromCenter?.toFixed(2) || 'N/A',
+             ].join(','))
+           ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
@@ -150,13 +151,14 @@ const ReverseSearchPage = () => {
             <TableHead>
               <TableRow>
                 <TableCell className={classes.columnAction} />
-                <TableCell>{t('sharedDevice')}</TableCell>
-                <TableCell>{t('settingsGroups')}</TableCell>
-                <TableCell>{t('Entry Time')}</TableCell>
-                <TableCell>{t('Exit Time')}</TableCell>
-                <TableCell>{t('positionLatitude')}</TableCell>
-                <TableCell>{t('positionLongitude')}</TableCell>
-                <TableCell>{t('Distance (m)')}</TableCell>
+                       <TableCell>{t('sharedDevice')}</TableCell>
+                       <TableCell>{t('deviceLicensePlate')}</TableCell>
+                       <TableCell>{t('settingsGroups')}</TableCell>
+                       <TableCell>{t('Entry Time')}</TableCell>
+                       <TableCell>{t('Exit Time')}</TableCell>
+                       <TableCell>{t('positionLatitude')}</TableCell>
+                       <TableCell>{t('positionLongitude')}</TableCell>
+                       <TableCell>{t('Distance (m)')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -192,16 +194,17 @@ const ReverseSearchPage = () => {
                         </IconButton>
                       )}
                     </TableCell>
-                    <TableCell>{item.name || item.deviceName}</TableCell>
-                    <TableCell>{item.groupName || '-'}</TableCell>
-                    <TableCell>{dayjs(item.entryTime).format('YYYY-MM-DD HH:mm:ss')}</TableCell>
-                    <TableCell>{item.exitTime ? dayjs(item.exitTime).format('YYYY-MM-DD HH:mm:ss') : 'En zone'}</TableCell>
-                    <TableCell>{item.latitude?.toFixed(6) || '-'}</TableCell>
-                    <TableCell>{item.longitude?.toFixed(6) || '-'}</TableCell>
-                    <TableCell>{item.distanceFromCenter?.toFixed(2) || 'N/A'}</TableCell>
+                     <TableCell>{item.name || item.deviceName}</TableCell>
+                     <TableCell>{item.licensePlate || '-'}</TableCell>
+                     <TableCell>{item.groupName || '-'}</TableCell>
+                     <TableCell>{dayjs(item.entryTime).format('YYYY-MM-DD HH:mm:ss')}</TableCell>
+                     <TableCell>{item.exitTime ? dayjs(item.exitTime).format('YYYY-MM-DD HH:mm:ss') : 'En zone'}</TableCell>
+                     <TableCell>{item.latitude?.toFixed(6) || '-'}</TableCell>
+                     <TableCell>{item.longitude?.toFixed(6) || '-'}</TableCell>
+                     <TableCell>{item.distanceFromCenter?.toFixed(2) || 'N/A'}</TableCell>
                   </TableRow>
                 );
-              }) : (<TableShimmer columns={8} startAction />)}
+              }) : (<TableShimmer columns={9} startAction />)}
             </TableBody>
           </Table>
         </div>
