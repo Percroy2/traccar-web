@@ -210,6 +210,15 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
                 <CardContent className={classes.content}>
                   <Table size="small" classes={{ root: classes.table }}>
                     <TableBody>
+                      {/* Affichage de la plaque d'immatriculation si elle existe */}
+                      {device?.licensePlate && (
+                        <StatusRow
+                          key="licensePlate"
+                          name={t('deviceLicensePlate')}
+                          content={device.licensePlate}
+                        />
+                      )}
+                      
                       {positionItems.split(',').filter((key) => position.hasOwnProperty(key) || position.attributes.hasOwnProperty(key)).map((key) => (
                         <StatusRow
                           key={key}
