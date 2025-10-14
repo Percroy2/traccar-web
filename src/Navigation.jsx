@@ -61,6 +61,7 @@ import { generateLoginToken } from './common/components/NativeInterface';
 import { useLocalization } from './common/components/LocalizationProvider';
 import fetchOrThrow from './common/util/fetchOrThrow';
 import AuditPage from './reports/AuditPage';
+import ReverseSearchPage from './other/ReverseSearchPage';
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -124,6 +125,7 @@ const Navigation = () => {
         <Route path="event/:id" element={<EventPage />} />
         <Route path="replay" element={<ReplayPage />} />
         <Route path="geofences" element={<GeofencesPage />} />
+        <Route path="reversesearch" element={<ReverseSearchPage />} />
         <Route path="emulator" element={<EmulatorPage />} />
 
         <Route path="settings">
