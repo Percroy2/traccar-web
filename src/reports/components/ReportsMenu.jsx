@@ -11,6 +11,7 @@ import RouteIcon from '@mui/icons-material/Route';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import NotesIcon from '@mui/icons-material/Notes';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import SearchIcon from '@mui/icons-material/Search';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from '../../common/components/LocalizationProvider';
 import { useAdministrator, useRestriction } from '../../common/util/permissions';
@@ -72,6 +73,12 @@ const ReportsMenu = () => {
           link="/reports/route"
           icon={<TimelineIcon />}
           selected={location.pathname === '/reports/route'}
+        />
+        <MenuItem
+          title="Recherche Inversée"
+          link="/reversesearch"
+          icon={<SearchIcon />}
+          selected={location.pathname === '/reversesearch'}
         />
       </List>
       <Divider />
