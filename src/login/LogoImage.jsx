@@ -6,11 +6,17 @@ import Logo from '../resources/images/logo.svg?react';
 const useStyles = makeStyles()((theme) => ({
   image: {
     alignSelf: 'center',
-    maxWidth: '240px',
-    maxHeight: '120px',
+    maxWidth: '280px',
+    maxHeight: '140px',
     width: 'auto',
     height: 'auto',
     margin: theme.spacing(2),
+    filter: 'drop-shadow(0 4px 16px rgba(0, 0, 0, 0.15))',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      transform: 'scale(1.05)',
+      filter: 'drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))',
+    },
   },
 }));
 
