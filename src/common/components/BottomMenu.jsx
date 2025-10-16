@@ -10,10 +10,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 import { sessionActions } from '../../store';
 import { useTranslation } from './LocalizationProvider';
-import { useRestriction } from '../util/permissions';
+import { useRestriction, useAdministrator } from '../util/permissions';
 import { nativePostMessage } from './NativeInterface';
 
 const BottomMenu = () => {
@@ -24,6 +25,7 @@ const BottomMenu = () => {
 
   const readonly = useRestriction('readonly');
   const disableReports = useRestriction('disableReports');
+  const admin = useAdministrator();
   const user = useSelector((state) => state.session.user);
   const socket = useSelector((state) => state.session.socket);
   const selectedDeviceId = useSelector((state) => state.devices.selectedId);
@@ -33,6 +35,8 @@ const BottomMenu = () => {
   const currentSelection = () => {
     if (location.pathname === `/settings/user/${user.id}`) {
       return 'account';
+    } if (location.pathname.startsWith('/dashboard')) {
+      return 'dashboard';
     } if (location.pathname.startsWith('/settings')) {
       return 'settings';
     } if (location.pathname.startsWith('/reports')) {
@@ -82,6 +86,9 @@ const BottomMenu = () => {
       case 'map':
         navigate('/');
         break;
+      case 'dashboard':
+        navigate('/dashboard');
+        break;
       case 'reports':
         if (selectedDeviceId != null) {
           navigate(`/reports/combined?deviceId=${selectedDeviceId}`);
@@ -115,6 +122,9 @@ const BottomMenu = () => {
           )}
           value="map"
         />
+        {admin && (
+          <BottomNavigationAction label={t('dashboardTitle')} icon={<DashboardIcon />} value="dashboard" />
+        )}
         {!disableReports && (
           <BottomNavigationAction label={t('reportTitle')} icon={<DescriptionIcon />} value="reports" />
         )}

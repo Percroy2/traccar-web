@@ -62,6 +62,7 @@ import { useLocalization } from './common/components/LocalizationProvider';
 import fetchOrThrow from './common/util/fetchOrThrow';
 import AuditPage from './reports/AuditPage';
 import ReverseSearchPage from './other/ReverseSearchPage';
+import DashboardPage from './dashboard/DashboardPage';
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -120,6 +121,7 @@ const Navigation = () => {
       <Route path="/" element={<App />}>
         <Route index element={<MainPage />} />
 
+        <Route path="dashboard" element={<DashboardPage />} />
         <Route path="position/:id" element={<PositionPage />} />
         <Route path="network/:positionId" element={<NetworkPage />} />
         <Route path="event/:id" element={<EventPage />} />
